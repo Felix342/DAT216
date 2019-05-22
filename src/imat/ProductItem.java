@@ -67,18 +67,23 @@ public class ProductItem extends AnchorPane {
         productAmount.textProperty().set(Double.toString(amount));
     }
 
+    @FXML
     protected void addOneItem(Event event) {
         if(shoppingItem == null) {
             return;
         }
+        System.out.println("Hello");
         shoppingItem.setAmount(shoppingItem.getAmount() + 1); // TODO update visual either manually or through observer
+        productAmount.textProperty().set(Double.toString(shoppingItem.getAmount()));
     }
 
+    @FXML
     protected void removeOneItem() {
         if(shoppingItem == null || shoppingItem.getAmount() < 1) {
             return;
         }
 
         shoppingItem.setAmount(shoppingItem.getAmount() + 1);
+        productAmount.textProperty().set(Double.toString(shoppingItem.getAmount()));
     }
 }

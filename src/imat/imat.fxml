@@ -43,7 +43,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="toHistory1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="360.0" styleClass="navbar-item" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="toHistory1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#showHistoryPane" prefHeight="60.0" prefWidth="360.0" styleClass="navbar-item" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="85.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -53,7 +53,7 @@
                   <Text fill="WHITE" layoutX="148.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Tidigare Köp" />
                </children>
             </Pane>
-            <Pane fx:id="toUser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="360.0" styleClass="navbar-item" AnchorPane.leftAnchor="920.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="toUser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#showUserPane" prefHeight="60.0" prefWidth="360.0" styleClass="navbar-item" AnchorPane.leftAnchor="920.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="85.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -93,23 +93,9 @@
                         <TextField fx:id="emailEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="saveEdit" layoutX="540.0" layoutY="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="540.0" AnchorPane.topAnchor="400.0">
+                  <Pane fx:id="saveEdit" layoutX="540.0" layoutY="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#saveUserFields" prefHeight="30.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="540.0" AnchorPane.topAnchor="400.0">
                      <children>
                         <Text fill="WHITE" layoutX="27.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Spara ändringar" />
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="startPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css">
-               <children>
-                  <Pane fx:id="toStore3" layoutX="494.0" layoutY="193.0" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="250.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="45.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Till Affären" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="toHistory2" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="350.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Tidigare Köp" />
                      </children>
                   </Pane>
                </children>
@@ -521,6 +507,20 @@
                   </SplitPane>
               </items>
             </SplitPane>
+            <AnchorPane fx:id="startPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css">
+               <children>
+                  <Pane fx:id="toStore3" layoutX="494.0" layoutY="193.0" onMouseClicked="#showShopPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="250.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="45.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Till Affären" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="toHistory2" onMouseClicked="#showHistoryPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="350.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Tidigare Köp" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
          </children>
       </StackPane>
    </children>

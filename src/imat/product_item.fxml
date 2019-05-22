@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="196.0" styleClass="background" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
          <children>
@@ -16,18 +16,17 @@
             </ImageView>
             <Text fx:id="productName" fill="WHITE" layoutX="67.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Äpple" AnchorPane.topAnchor="5.0" />
             <Text fx:id="productPrice" fill="WHITE" layoutX="78.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="78.0" />
-            <Text fx:id="ammountShoppingcartItem1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="3" />
-            <ImageView fx:id="productRemoveButton" fitHeight="24.0" fitWidth="24.0" layoutX="36.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="135.0">
+            <Text fx:id="productAmount" fill="WHITE" layoutX="87.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="2" AnchorPane.leftAnchor="91.0" AnchorPane.topAnchor="132.0" />
+            <ImageView fx:id="productRemoveButton" fitHeight="24.0" fitWidth="24.0" layoutX="36.0" layoutY="125.0" onMouseClicked="#removeOneItem" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="135.0">
                <image>
                   <Image url="@resources/remove.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="productAddButton" fitHeight="24.0" fitWidth="24.0" layoutX="118.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="135.0">
+            <ImageView fx:id="productAddButton" fitHeight="24.0" fitWidth="24.0" layoutX="118.0" layoutY="125.0" onMouseClicked="#addOneItem" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="135.0">
                <image>
                   <Image url="@resources/add.png" />
                </image>
             </ImageView>
-            <Text fx:id="productAmmount" fill="WHITE" layoutX="87.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="2" AnchorPane.leftAnchor="91.0" AnchorPane.topAnchor="132.0" />
             <ImageView fx:id="productFavorite" fitHeight="24.0" fitWidth="24.0" layoutX="-78.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@resources/favorite.png" />
@@ -36,4 +35,4 @@
          </children>
       </AnchorPane>
    </children>
-</AnchorPane>
+</fx:root>
