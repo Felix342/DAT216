@@ -72,7 +72,6 @@ public class ProductItem extends AnchorPane {
         if(shoppingItem == null) {
             return;
         }
-        System.out.println("Hello");
         shoppingItem.setAmount(shoppingItem.getAmount() + 1); // TODO update visual either manually or through observer
         productAmount.textProperty().set(Double.toString(shoppingItem.getAmount()));
     }

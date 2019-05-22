@@ -1,7 +1,9 @@
 package imat;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
@@ -21,6 +23,9 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     private IMatDataHandler iMatDataHandler;
+    private List<Product> products;
+    private int productIndex = 0;
+    private final int productsPerPage = 9;
 
     @FXML private Button toShopButton;
     @FXML private Button earlierRecieptsButton;
@@ -55,10 +60,43 @@ public class MainController implements Initializable {
         shopPane.toFront();
 
         productList.getChildren().clear();
-        List<Product> products = iMatDataHandler.getProducts();
-        for(Product p : products) {
-            productList.getChildren().add(new ProductItem(this, p));
+        products = iMatDataHandler.getProducts();
+        productIndex = 0;
+        populateCurrentShopPage();
+    }
+
+    private void populateCurrentShopPage() {
+        ObservableList<Node> children = productList.getChildren();
+        children.clear();
+        List<Product> currentPageProducts = products.subList(productIndex, Math.min(productIndex + productsPerPage, products.size()));
+        for(Product p : currentPageProducts) {
+            children.add(new ProductItem(this, p));
         }
+    }
+
+    @FXML
+    private void nextShopPage() {
+        if(productIndex + productsPerPage > products.size())
+            return;
+        productIndex += productsPerPage;
+        populateCurrentShopPage();
+    }
+
+    @FXML
+    private void previousShopPage() {
+        if(productIndex - productsPerPage < 0) {
+            productIndex = 0;
+        }
+        else {
+            productIndex -= productsPerPage;
+        }
+        populateCurrentShopPage();
+    }
+
+    @FXML
+    private void firstShopPage() {
+        productIndex = 0;
+        populateCurrentShopPage();
     }
 
     @FXML

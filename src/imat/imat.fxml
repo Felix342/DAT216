@@ -417,6 +417,20 @@
                   </AnchorPane>
                </children>
             </StackPane>
+            <AnchorPane fx:id="startPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css">
+               <children>
+                  <Pane fx:id="toStore3" layoutX="494.0" layoutY="193.0" onMouseClicked="#showShopPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="250.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="45.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Till Affären" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="toHistory2" onMouseClicked="#showHistoryPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="350.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Tidigare Köp" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
             <SplitPane fx:id="shopPane" dividerPositions="0.29797979797979796, 0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="remove-border">
               <items>
                   <FlowPane fx:id="categoryList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="200.0" styleClass="background" SplitPane.resizableWithParent="false" />
@@ -429,7 +443,7 @@
                               <Text fx:id="resultKeyword" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Godis" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="20.0" />
                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" styleClass="pagebuttons" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="10.0">
                                  <children>
-                                    <Pane fx:id="shopItemsFirstPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0">
+                                    <Pane fx:id="shopItemsFirstPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#firstShopPage" prefHeight="40.0" prefWidth="80.0">
                                        <children>
                                           <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -439,7 +453,7 @@
                                           <Text fill="WHITE" layoutX="7.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Första sidan" />
                                        </children>
                                     </Pane>
-                                    <Pane fx:id="shopItemsPrevPage" layoutX="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0">
+                                    <Pane fx:id="shopItemsPrevPage" layoutX="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#previousShopPage" prefHeight="40.0" prefWidth="80.0">
                                        <children>
                                           <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -449,7 +463,7 @@
                                           <Text fill="WHITE" layoutX="8.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Föregående" />
                                        </children>
                                     </Pane>
-                                    <Pane fx:id="shopItemsNextPage" layoutX="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0">
+                                    <Pane fx:id="shopItemsNextPage" layoutX="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#nextShopPage" prefHeight="40.0" prefWidth="80.0">
                                        <children>
                                           <Text fill="WHITE" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Nästa" />
                                           <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
@@ -507,20 +521,6 @@
                   </SplitPane>
               </items>
             </SplitPane>
-            <AnchorPane fx:id="startPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css">
-               <children>
-                  <Pane fx:id="toStore3" layoutX="494.0" layoutY="193.0" onMouseClicked="#showShopPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="250.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="45.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Till Affären" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="toHistory2" onMouseClicked="#showHistoryPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="350.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Tidigare Köp" />
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
          </children>
       </StackPane>
    </children>
