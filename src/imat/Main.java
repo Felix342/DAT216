@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.util.ResourceBundle;
 
@@ -22,6 +23,11 @@ public class Main extends Application {
         stage.getIcons().add(new Image("imat/icon.png"));
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void stop() {
+        IMatDataHandler.getInstance().shutDown();
     }
 
 
