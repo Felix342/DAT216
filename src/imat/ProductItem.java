@@ -28,9 +28,10 @@ public class ProductItem extends AnchorPane {
     private MainController parentController;
     private IMatDataHandler iMatDataHandler;
     private ShoppingItem shoppingItem;
+    private Product product;
 
-    public ProductItem(MainController controller, Product product) {
-
+    public ProductItem(MainController controller, Product p) {
+        this.product = p;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_item.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -55,34 +56,57 @@ public class ProductItem extends AnchorPane {
         String priceAndUnit = Double.toString(product.getPrice()) + product.getUnit();
         productPrice.textProperty().set(priceAndUnit);
 
-        double amount = 0.0;
-        List<ShoppingItem> items = iMatDataHandler.getShoppingCart().getItems();
-        for(ShoppingItem item : items) {
-            if(item.getProduct() == product) {
-                shoppingItem = item;
-                amount = shoppingItem.getAmount();
-                break;
-            }
-        }
-        productAmount.textProperty().set(Double.toString(amount));
+        productAmount.textProperty().set(Double.toString(getAmount()));
     }
 
     @FXML
     protected void addOneItem(Event event) {
-        if(shoppingItem == null) {
-            return;
+        ShoppingItem item = getItem(this.product);
+        if(item == null) {
+            iMatDataHandler.getShoppingCart().addProduct(this.product);
         }
-        shoppingItem.setAmount(shoppingItem.getAmount() + 1); // TODO update visual either manually or through observer
-        productAmount.textProperty().set(Double.toString(shoppingItem.getAmount()));
+        else {
+            item.setAmount(item.getAmount() + 1);
+        }
+
+        productAmount.textProperty().set(Double.toString(getAmount()));
     }
 
     @FXML
     protected void removeOneItem() {
-        if(shoppingItem == null || shoppingItem.getAmount() < 1) {
+        ShoppingItem item = getItem(this.product);
+        if(item == null || item.getAmount() < 1) {
             return;
         }
+        else {
+            item.setAmount(item.getAmount() - 1);
+        }
 
-        shoppingItem.setAmount(shoppingItem.getAmount() + 1);
-        productAmount.textProperty().set(Double.toString(shoppingItem.getAmount()));
+        productAmount.textProperty().set(Double.toString(getAmount()));
+    }
+
+    private ShoppingItem getItem(Product p) {
+        if(this.shoppingItem != null)
+            return this.shoppingItem;
+
+        List<ShoppingItem> items = iMatDataHandler.getShoppingCart().getItems();
+        for(ShoppingItem item : items) {
+            if(item.getProduct() == product) {
+                this.shoppingItem = item;
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    private double getAmount() {
+        ShoppingItem si = getItem(this.product);
+        if(si == null) {
+            return 0.0;
+        }
+        else {
+            return si.getAmount();
+        }
     }
 }
