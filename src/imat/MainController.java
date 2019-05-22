@@ -1,6 +1,7 @@
 package imat;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -8,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -26,6 +29,8 @@ public class MainController implements Initializable {
     private List<Product> products;
     private int productIndex = 0;
     private final int productsPerPage = 9;
+
+    @FXML private TextField searchBar;
 
     @FXML private Button toShopButton;
     @FXML private Button earlierRecieptsButton;
@@ -49,6 +54,14 @@ public class MainController implements Initializable {
 //        testFlowPane.getChildren().add(new ProductItem(this));
         iMatDataHandler = IMatDataHandler.getInstance();
         populateUserFields(iMatDataHandler.getCustomer());
+        searchBar.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if(keyEvent.getCode().equals(KeyCode.ENTER)) {
+                    showShopPane();
+                }
+            }
+        });
     }
 
     public IMatDataHandler getIMatDataHandler() {
@@ -60,7 +73,7 @@ public class MainController implements Initializable {
         shopPane.toFront();
 
         productList.getChildren().clear();
-        products = iMatDataHandler.getProducts();
+        products = iMatDataHandler.findProducts(searchBar.getText());
         productIndex = 0;
         populateCurrentShopPage();
     }
