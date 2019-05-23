@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" styleClass="background" stylesheets="@style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fx:id="nameShoppingcartItem" fill="WHITE" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Paprika" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Text fx:id="priceShoppingCartItem" fill="WHITE" layoutX="120.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="75.0" />
@@ -15,15 +15,15 @@
             <Image url="@resources/close.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="removeShoppingcartItem" fitHeight="24.0" fitWidth="24.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="40.0">
+      <ImageView fx:id="removeShoppingcartItem" fitHeight="24.0" fitWidth="24.0" layoutX="100.0" layoutY="25.0" onMouseClicked="#removeOneItem" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="40.0">
          <image>
             <Image url="@resources/remove.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="addShoppingcartItem" fitHeight="24.0" fitWidth="24.0" layoutX="61.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="40.0">
+      <ImageView fx:id="addShoppingcartItem" fitHeight="24.0" fitWidth="24.0" layoutX="61.0" layoutY="25.0" onMouseClicked="#addOneItem" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="40.0">
          <image>
             <Image url="@resources/add.png" />
          </image>
       </ImageView>
    </children>
-</AnchorPane>
+</fx:root>

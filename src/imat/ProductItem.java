@@ -69,6 +69,8 @@ public class ProductItem extends AnchorPane {
             item.setAmount(item.getAmount() + 1);
         }
 
+        iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, true);
+
         productAmount.textProperty().set(Double.toString(getAmount()));
     }
 
@@ -80,6 +82,7 @@ public class ProductItem extends AnchorPane {
         }
         else {
             item.setAmount(item.getAmount() - 1);
+            iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, false);
         }
 
         productAmount.textProperty().set(Double.toString(getAmount()));

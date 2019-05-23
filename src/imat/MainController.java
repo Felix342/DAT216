@@ -14,9 +14,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
-import se.chalmers.cse.dat216.project.Customer;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
+import javafx.scene.text.Text;
+import se.chalmers.cse.dat216.project.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -47,6 +46,11 @@ public class MainController implements Initializable {
     @FXML private TextField addressEdit;
     @FXML private TextField emailEdit;
 
+    @FXML private FlowPane categoryList;
+    @FXML private FlowPane shoppingcartList;
+    @FXML private Text shoppingcartTotalItems;
+    @FXML private Text shoppingcartTotalPrice;
+
     @FXML private ImageView testImage;
 
     @Override
@@ -62,6 +66,17 @@ public class MainController implements Initializable {
                 }
             }
         });
+        iMatDataHandler.getShoppingCart().addShoppingCartListener(new ShoppingCartListener() {
+            @Override
+            public void shoppingCartChanged(CartEvent cartEvent) {
+                populateCurrentShopPage();
+                renderCart();
+                shoppingcartTotalPrice.textProperty().set(iMatDataHandler.getShoppingCart().getTotal() + "kr");
+            }
+        });
+        shoppingcartTotalPrice.textProperty().set(iMatDataHandler.getShoppingCart().getTotal() + "kr");
+        renderCart();
+        populateCategories();
     }
 
     public IMatDataHandler getIMatDataHandler() {
@@ -74,6 +89,16 @@ public class MainController implements Initializable {
 
         productList.getChildren().clear();
         products = iMatDataHandler.findProducts(searchBar.getText());
+        productIndex = 0;
+        populateCurrentShopPage();
+    }
+
+    @FXML
+    protected void showShopPaneByCategory(ProductCategory pc) {
+        shopPane.toFront();
+
+        productList.getChildren().clear();
+        products = iMatDataHandler.getProducts(pc);
         productIndex = 0;
         populateCurrentShopPage();
     }
@@ -143,5 +168,24 @@ public class MainController implements Initializable {
         customer.setLastName(lastnameEdit.getText());
         customer.setAddress(addressEdit.getText());
         customer.setEmail(emailEdit.getText());
+    }
+
+    private void renderCart() {
+        shoppingcartList.getChildren().clear();
+        ShoppingCart cart = iMatDataHandler.getShoppingCart();
+        for(ShoppingItem item : cart.getItems()) {
+            ShoppingcartItem sci = new ShoppingcartItem(this, item);
+            shoppingcartList.getChildren().add(sci);
+        }
+    }
+
+    @FXML private void emptyShoppingCart() {
+        iMatDataHandler.getShoppingCart().clear();
+    }
+
+    private void populateCategories() {
+        for(ProductCategory pc : ProductCategory.values()) {
+            categoryList.getChildren().add(new CategoryItem(this, pc));
+        }
     }
 }

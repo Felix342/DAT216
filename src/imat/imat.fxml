@@ -489,7 +489,7 @@
                         <FlowPane fx:id="shoppingcartList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="300.0" />
                       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="300.0" SplitPane.resizableWithParent="false">
                            <children>
-                              <Pane fx:id="shoppingcartEmpty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="150.0" styleClass="navbar-item" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                              <Pane fx:id="shoppingcartEmpty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#emptyShoppingCart" prefHeight="40.0" prefWidth="150.0" styleClass="navbar-item" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                                  <children>
                                     <Text fill="WHITE" layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Töm Varukorg" />
                                  </children>
