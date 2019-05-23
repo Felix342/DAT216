@@ -27,7 +27,7 @@ public class MainController implements Initializable {
     private IMatDataHandler iMatDataHandler;
     private List<Product> products;
     private int productIndex = 0;
-    private final int productsPerPage = 9;
+    private final int productsPerPage = 12;
 
     @FXML private TextField searchBar;
 

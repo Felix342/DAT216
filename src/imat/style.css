@@ -4,6 +4,8 @@
     src: url('Roboto-Regular.ttf');
 }
 
+
+
 .navbar-itemsearch {
     -fx-background-color: #C92D3C;
 }
@@ -24,9 +26,16 @@
     -fx-background-color: #006421;
 }
 
-
 .background {
     -fx-background-color: #2F4858;
+}
+
+.catitem {
+    -fx-background-color: #2F4858;
+}
+
+.catitem:hover {
+    -fx-background-color: #1F3848;
 }
 
 .pagebuttons {

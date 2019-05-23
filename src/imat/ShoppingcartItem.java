@@ -38,7 +38,7 @@ public class ShoppingcartItem extends AnchorPane {
 
         nameShoppingcartItem.textProperty().set(product.getName());
         priceShoppingCartItem.textProperty().set(Double.toString(product.getPrice()) + "kr");
-        amountShoppingcartItem.textProperty().set(Double.toString(item.getAmount()));
+        amountShoppingcartItem.textProperty().set(Integer.toString((int)item.getAmount()));
     }
 
     @FXML
@@ -53,7 +53,7 @@ public class ShoppingcartItem extends AnchorPane {
 
         iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, true);
 
-        amountShoppingcartItem.textProperty().set(Double.toString(getAmount()));
+        amountShoppingcartItem.textProperty().set(Integer.toString((int)getAmount()));
     }
 
     @FXML
@@ -67,7 +67,7 @@ public class ShoppingcartItem extends AnchorPane {
             iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, false);
         }
 
-        amountShoppingcartItem.textProperty().set(Double.toString(getAmount()));
+        amountShoppingcartItem.textProperty().set(Integer.toString((int)getAmount()));
     }
 
     private ShoppingItem getItem(Product p) {

@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="196.0" styleClass="background" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
          <children>
-            <Text fx:id="dateHistoryCart" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-normal" text="2019-03-01" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="118.0" />
-            <Text fx:id="totalPriceHistoryCart" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-normal" text="540kr" AnchorPane.leftAnchor="83.0" AnchorPane.topAnchor="134.0" />
+            <Text fx:id="dateHistoryCart" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-normal" text="2019-03-01" textAlignment="CENTER" wrappingWidth="196.0" AnchorPane.topAnchor="118.0" />
+            <Text fx:id="totalPriceHistoryCart" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-normal" text="540kr" textAlignment="CENTER" wrappingWidth="196.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="134.0" />
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="23.0">
                <image>
                   <Image url="@resources/cart.png" />

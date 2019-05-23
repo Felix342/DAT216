@@ -3,27 +3,40 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" styleClass="background" stylesheets="@style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="285.0" style="-fx-background-color: white;" styleClass="background" stylesheets="@style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fx:id="nameShoppingcartItem" fill="WHITE" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Paprika" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <Text fx:id="priceShoppingCartItem" fill="WHITE" layoutX="120.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="75.0" />
-      <Text fx:id="amountShoppingcartItem" fill="WHITE" layoutX="139.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="3" AnchorPane.leftAnchor="142.0" AnchorPane.topAnchor="38.0" />
-      <ImageView fx:id="deleteShoppingcartItem" fitHeight="24.0" fitWidth="24.0" layoutX="-39.0" layoutY="-54.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-         <image>
-            <Image url="@resources/close.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="removeShoppingcartItem" fitHeight="24.0" fitWidth="24.0" layoutX="100.0" layoutY="25.0" onMouseClicked="#removeOneItem" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="40.0">
-         <image>
-            <Image url="@resources/remove.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="addShoppingcartItem" fitHeight="24.0" fitWidth="24.0" layoutX="61.0" layoutY="25.0" onMouseClicked="#addOneItem" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="40.0">
-         <image>
-            <Image url="@resources/add.png" />
-         </image>
-      </ImageView>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="281.0" styleClass="background" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+         <children>
+            <Text fx:id="nameShoppingcartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Paprika" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <Text fx:id="priceShoppingCartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" textAlignment="CENTER" wrappingWidth="296.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0" />
+            <Text fx:id="amountShoppingcartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="3" textAlignment="CENTER" wrappingWidth="286.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="38.0" />
+            <ImageView fx:id="deleteShoppingcartItem" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="@resources/close.png" />
+               </image>
+            </ImageView>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <ImageView fx:id="addShoppingcartItem" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#addOneItem" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/add.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.leftAnchor="105.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <ImageView fx:id="removeShoppingcartItem" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#removeOneItem" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/remove.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
    </children>
 </fx:root>

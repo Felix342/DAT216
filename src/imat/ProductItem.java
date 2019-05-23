@@ -56,7 +56,7 @@ public class ProductItem extends AnchorPane {
         String priceAndUnit = Double.toString(product.getPrice()) + product.getUnit();
         productPrice.textProperty().set(priceAndUnit);
 
-        productAmount.textProperty().set(Double.toString(getAmount()));
+        productAmount.textProperty().set(Integer.toString((int)getAmount()));
     }
 
     @FXML
@@ -71,7 +71,7 @@ public class ProductItem extends AnchorPane {
 
         iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, true);
 
-        productAmount.textProperty().set(Double.toString(getAmount()));
+        productAmount.textProperty().set(Integer.toString((int)getAmount()));
     }
 
     @FXML
@@ -85,7 +85,7 @@ public class ProductItem extends AnchorPane {
             iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, false);
         }
 
-        productAmount.textProperty().set(Double.toString(getAmount()));
+        productAmount.textProperty().set(Integer.toString((int)getAmount()));
     }
 
     private ShoppingItem getItem(Product p) {

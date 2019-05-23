@@ -14,10 +14,10 @@
                   <Image url="@resources/apple.png" />
                </image>
             </ImageView>
-            <Text fx:id="nameHistoryItem" fill="WHITE" layoutX="67.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Äpple" AnchorPane.topAnchor="5.0" />
-            <Text fx:id="priceHistoryItem" fill="WHITE" layoutX="78.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="78.0" />
+            <Text fx:id="nameHistoryItem" fill="WHITE" layoutX="67.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Äpple" textAlignment="CENTER" wrappingWidth="196.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0" />
+            <Text fx:id="priceHistoryItem" fill="WHITE" layoutX="78.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" textAlignment="CENTER" wrappingWidth="196.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" />
             <Text fx:id="ammountShoppingcartItem1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="3" />
-            <Text fx:id="ammountHistoryItem" fill="WHITE" layoutX="87.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="2" AnchorPane.leftAnchor="91.0" AnchorPane.topAnchor="132.0" />
+            <Text fx:id="ammountHistoryItem" fill="WHITE" layoutX="87.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="2" textAlignment="CENTER" wrappingWidth="196.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="132.0" />
          </children>
       </AnchorPane>
    </children>

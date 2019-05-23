@@ -29,10 +29,6 @@ public class CategoryItem extends AnchorPane {
         categoryName.textProperty().set(productCategory.name());
     }
 
-    private ProductCategory getProductCategory() {
-        return productCategory;
-    }
-
     @FXML
     private void onClick() {
         parentController.showShopPaneByCategory(productCategory);
