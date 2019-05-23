@@ -68,112 +68,6 @@
       </AnchorPane>
       <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <AnchorPane fx:id="startPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css">
-               <children>
-                  <Pane fx:id="toStore3" layoutX="494.0" layoutY="193.0" onMouseClicked="#showShopPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="250.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="45.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Till Affären" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="toHistory2" onMouseClicked="#showHistoryPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="350.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Tidigare Köp" />
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
-            <StackPane fx:id="historyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background">
-                     <children>
-                        <FlowPane fx:id="historyView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" styleClass="background" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="130.0" />
-                        <ImageView fx:id="backFromHistory" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
-                           <image>
-                              <Image url="@resources/back.png" />
-                           </image>
-                        </ImageView>
-                        <Pane fx:id="loadHistoryCart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="540.0" AnchorPane.topAnchor="550.0">
-                           <children>
-                              <Text fill="WHITE" layoutX="45.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Ladda korg" />
-                           </children>
-                        </Pane>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" AnchorPane.leftAnchor="900.0" AnchorPane.topAnchor="545.0">
-                           <children>
-                              <Pane fx:id="historyItemsFirstPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
-                                 <children>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@resources/navigatestart.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="WHITE" layoutX="7.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Första sidan" />
-                                 </children>
-                              </Pane>
-                              <Pane fx:id="historyItemsPrevPage" layoutX="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
-                                 <children>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@resources/navigatelast.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="WHITE" layoutX="8.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Föregående" />
-                                 </children>
-                              </Pane>
-                              <Pane fx:id="historyItemsNextPage" layoutX="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
-                                 <children>
-                                    <Text fill="WHITE" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Nästa" />
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@resources/navigatenext.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </Pane>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background">
-                     <children>
-                        <FlowPane fx:id="historyOverall" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" styleClass="background" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="130.0" />
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" styleClass="pagebuttons" AnchorPane.leftAnchor="900.0" AnchorPane.topAnchor="545.0">
-                           <children>
-                              <Pane fx:id="historyOverviewFirstPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
-                                 <children>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@resources/navigatestart.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="WHITE" layoutX="7.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Första sidan" />
-                                 </children>
-                              </Pane>
-                              <Pane fx:id="historyOverviewPrevPage" layoutX="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
-                                 <children>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@resources/navigatelast.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="WHITE" layoutX="8.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Föregående" />
-                                 </children>
-                              </Pane>
-                              <Pane fx:id="historyOverviewNextPage" layoutX="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
-                                 <children>
-                                    <Text fill="WHITE" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Nästa" />
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@resources/navigatenext.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </Pane>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </StackPane>
             <StackPane fx:id="paymentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0">
                <children>
                   <AnchorPane fx:id="paymentStage1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background">
@@ -432,6 +326,112 @@
                   </Pane>
                </children>
             </AnchorPane>
+            <StackPane fx:id="historyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background">
+                     <children>
+                        <FlowPane fx:id="historyView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" styleClass="background" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="130.0" />
+                        <ImageView fx:id="backFromHistory" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
+                           <image>
+                              <Image url="@resources/back.png" />
+                           </image>
+                        </ImageView>
+                        <Pane fx:id="loadHistoryCart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="540.0" AnchorPane.topAnchor="550.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="45.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Ladda korg" />
+                           </children>
+                        </Pane>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" AnchorPane.leftAnchor="900.0" AnchorPane.topAnchor="545.0">
+                           <children>
+                              <Pane fx:id="historyItemsFirstPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@resources/navigatestart.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="WHITE" layoutX="7.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Första sidan" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="historyItemsPrevPage" layoutX="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@resources/navigatelast.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="WHITE" layoutX="8.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Föregående" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="historyItemsNextPage" layoutX="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
+                                 <children>
+                                    <Text fill="WHITE" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Nästa" />
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@resources/navigatenext.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background">
+                     <children>
+                        <FlowPane fx:id="historyOverall" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" styleClass="background" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="130.0" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="240.0" styleClass="pagebuttons" AnchorPane.leftAnchor="900.0" AnchorPane.topAnchor="545.0">
+                           <children>
+                              <Pane fx:id="historyOverviewFirstPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@resources/navigatestart.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="WHITE" layoutX="7.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Första sidan" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="historyOverviewPrevPage" layoutX="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@resources/navigatelast.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="WHITE" layoutX="8.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Föregående" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="historyOverviewNextPage" layoutX="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="80.0" styleClass="pagebuttons">
+                                 <children>
+                                    <Text fill="WHITE" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-smaller" text="Nästa" />
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@resources/navigatenext.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+            <AnchorPane fx:id="startPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css">
+               <children>
+                  <Pane fx:id="toStore3" layoutX="494.0" layoutY="193.0" onMouseClicked="#showShopPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="250.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="45.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Till Affären" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="toHistory2" onMouseClicked="#showHistoryPane" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="350.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Tidigare Köp" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
             <SplitPane fx:id="shopPane" dividerPositions="0.29797979797979796, 0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="remove-border">
               <items>
                   <FlowPane fx:id="categoryList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="200.0" styleClass="background" SplitPane.resizableWithParent="false" />
@@ -487,9 +487,9 @@
                   </SplitPane>
                   <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="660.0" prefWidth="300.0" styleClass="background" SplitPane.resizableWithParent="false">
                      <items>
-                        <ScrollPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="285.0" SplitPane.resizableWithParent="false">
+                        <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="285.0" SplitPane.resizableWithParent="false">
                            <content>
-                              <FlowPane fx:id="shoppingcartList" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="285.0" styleClass="background" />
+                              <FlowPane fx:id="shoppingcartList" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="289.0" styleClass="background" />
                            </content>
                         </ScrollPane>
                       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="300.0">
@@ -499,7 +499,7 @@
                                     <Text fill="WHITE" layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Töm Varukorg" />
                                  </children>
                               </Pane>
-                              <Pane fx:id="shoppingcartToPayment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="150.0" styleClass="confirm-item" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                              <Pane fx:id="shoppingcartToPayment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#orderCart" prefHeight="40.0" prefWidth="150.0" styleClass="confirm-item" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
                                     <Text fill="WHITE" layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Till Betalning">
                                        <font>

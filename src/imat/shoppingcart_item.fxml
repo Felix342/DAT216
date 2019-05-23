@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="285.0" style="-fx-background-color: white;" styleClass="background" stylesheets="@style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="269.0" style="-fx-background-color: white;" styleClass="background" stylesheets="@style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="281.0" styleClass="background" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="286.0" styleClass="background" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
          <children>
             <Text fx:id="nameShoppingcartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Paprika" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <Text fx:id="priceShoppingCartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" textAlignment="CENTER" wrappingWidth="296.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0" />
-            <Text fx:id="amountShoppingcartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="3" textAlignment="CENTER" wrappingWidth="286.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="38.0" />
+            <Text fx:id="priceShoppingCartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" textAlignment="CENTER" wrappingWidth="265.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+            <Text fx:id="amountShoppingcartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="3" textAlignment="CENTER" wrappingWidth="269.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="38.0" />
             <ImageView fx:id="deleteShoppingcartItem" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@resources/close.png" />
                </image>
             </ImageView>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="40.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="40.0">
                <children>
                   <ImageView fx:id="addShoppingcartItem" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#addOneItem" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -27,7 +27,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.leftAnchor="105.0" AnchorPane.topAnchor="40.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="40.0">
                <children>
                   <ImageView fx:id="removeShoppingcartItem" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#removeOneItem" pickOnBounds="true" preserveRatio="true">
                      <image>

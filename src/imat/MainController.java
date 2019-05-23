@@ -51,6 +51,8 @@ public class MainController implements Initializable {
     @FXML private Text shoppingcartTotalItems;
     @FXML private Text shoppingcartTotalPrice;
 
+    @FXML private FlowPane historyOverall;
+
     @FXML private ImageView testImage;
 
     @Override
@@ -77,6 +79,7 @@ public class MainController implements Initializable {
         shoppingcartTotalPrice.textProperty().set(iMatDataHandler.getShoppingCart().getTotal() + "kr");
         renderCart();
         populateCategories();
+        populateHistory();
     }
 
     public IMatDataHandler getIMatDataHandler() {
@@ -187,5 +190,16 @@ public class MainController implements Initializable {
         for(ProductCategory pc : ProductCategory.values()) {
             categoryList.getChildren().add(new CategoryItem(this, pc));
         }
+    }
+
+    private void populateHistory() {
+        for(Order order : iMatDataHandler.getOrders()) {
+            HistorycartItem hci = new HistorycartItem(order);
+            historyOverall.getChildren().add(hci);
+        }
+    }
+
+    @FXML private void orderCart() {
+        iMatDataHandler.placeOrder(false);
     }
 }

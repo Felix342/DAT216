@@ -26,7 +26,8 @@ public class CategoryItem extends AnchorPane {
         }
         productCategory = pc;
         parentController = controller;
-        categoryName.textProperty().set(productCategory.name());
+        String category = productCategory.name().toLowerCase().replace('_', ' ');
+        categoryName.textProperty().set(category.substring(0, 1).toUpperCase() + category.substring(1));
     }
 
     @FXML
