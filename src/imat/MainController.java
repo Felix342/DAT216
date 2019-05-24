@@ -33,11 +33,17 @@ public class MainController implements Initializable {
     private final int ordersPerPage = 10;
 
     private List<ShoppingItem> historyItems;
-    private int itemIndex = 0;
-    private final int itemsPerPage = 10;
+    private int historyitemIndex = 0;
+    private final int historyItemsPerPage = 10;
 
+    private List<ShoppingItem> paymentItems;
+    private int paymentItemIndex = 0;
+    private final int paymentItemsPerPage = 3;
+
+    // Navbar
     @FXML private TextField searchBar;
 
+    // Main panes
     @FXML private Button toShopButton;
     @FXML private Button earlierRecieptsButton;
     @FXML private SplitPane shopPane;
@@ -48,20 +54,42 @@ public class MainController implements Initializable {
     @FXML private FlowPane testFlowPane;
     @FXML private FlowPane productList;
 
+    // User info
     @FXML private TextField firstnameEdit;
     @FXML private TextField lastnameEdit;
     @FXML private TextField addressEdit;
     @FXML private TextField emailEdit;
 
+    // Shopping pane
     @FXML private FlowPane categoryList;
     @FXML private FlowPane shoppingcartList;
     @FXML private Text shoppingcartTotalItems;
     @FXML private Text shoppingcartTotalPrice;
 
+    // History
     @FXML private FlowPane historyOverall;
     @FXML private AnchorPane historyCartView;
     @FXML private AnchorPane historyItemView;
     @FXML private FlowPane historyView;
+
+    // Payment
+    @FXML private AnchorPane paymentStage1;
+    @FXML private AnchorPane paymentStage2;
+    @FXML private AnchorPane paymentStage3;
+    @FXML private AnchorPane paymentStage4;
+
+    @FXML private TextField firstnamePayment;
+    @FXML private TextField lastnamePayment;
+    @FXML private TextField addressPayment;
+    @FXML private TextField emailPayment;
+
+    @FXML private TextField cardnumberPayment;
+    @FXML private TextField cardOwnerPayment;
+    @FXML private TextField cardExpiryDatePayment;
+    @FXML private TextField cardCVCPayment;
+
+    @FXML private FlowPane confirmItemList;
+    @FXML private Text confirmTotalPrice;
 
     @FXML private ImageView testImage;
 
@@ -89,6 +117,7 @@ public class MainController implements Initializable {
         shoppingcartTotalPrice.textProperty().set(iMatDataHandler.getShoppingCart().getTotal() + "kr");
         renderCart();
         populateCategories();
+        preparePaymentStep1();
     }
 
     public IMatDataHandler getIMatDataHandler() {
@@ -151,9 +180,6 @@ public class MainController implements Initializable {
 
     @FXML
     private void showUserPane() { userPane.toFront(); }
-
-    @FXML
-    private void showPaymentPane() { paymentPane.toFront(); }
 
     @FXML
     private void showHistoryTab() {
@@ -263,23 +289,23 @@ public class MainController implements Initializable {
     private void populateCurrentHistoryItemPane() {
         ObservableList<Node> children = historyView.getChildren();
         children.clear();
-        List<ShoppingItem> currentPageItems = historyItems.subList(itemIndex, Math.min(itemIndex + itemsPerPage, historyItems.size()));
+        List<ShoppingItem> currentPageItems = historyItems.subList(historyitemIndex, Math.min(historyitemIndex + historyItemsPerPage, historyItems.size()));
         for(ShoppingItem i : currentPageItems) {
             children.add(new HistoryItem(this, i));
         }
     }
 
     @FXML private void firstItemPage() {
-        itemIndex = 0;
+        historyitemIndex = 0;
         populateCurrentHistoryItemPane();
     }
 
     @FXML private void previousItemPage() {
-        if(itemIndex - itemsPerPage < 0) {
-            itemIndex = 0;
+        if(historyitemIndex - historyItemsPerPage < 0) {
+            historyitemIndex = 0;
         }
         else {
-            itemIndex -= itemsPerPage;
+            historyitemIndex -= historyItemsPerPage;
         }
 
         populateCurrentHistoryItemPane();
@@ -287,10 +313,110 @@ public class MainController implements Initializable {
 
 
     @FXML private void nextItemPage() {
-        if(historyItems.size() <= itemIndex + itemsPerPage)
+        if(historyItems.size() <= historyitemIndex + historyItemsPerPage)
             return;
 
-        itemIndex += itemsPerPage;
+        historyitemIndex += historyItemsPerPage;
         populateCurrentHistoryItemPane();
+    }
+
+    @FXML
+    private void showPaymentPane() {
+        paymentStage1.toFront();
+        paymentPane.toFront();
+    }
+
+    private void preparePaymentStep1() {
+        paymentStage1.toFront();
+        Customer customer = iMatDataHandler.getCustomer();
+        firstnamePayment.setText(customer.getFirstName());
+        lastnamePayment.setText(customer.getLastName());
+        addressPayment.setText(customer.getAddress());
+        emailPayment.setText(customer.getEmail());
+    }
+
+    @FXML private void paymentStepDone1() {
+        Customer customer = iMatDataHandler.getCustomer();
+        customer.setFirstName(firstnamePayment.getText());
+        customer.setLastName(lastnamePayment.getText());
+        customer.setAddress(addressPayment.getText());
+        customer.setEmail(emailPayment.getText());
+
+        preparePaymentStep2();
+        paymentStage2.toFront();
+    }
+
+    private void preparePaymentStep2() {
+        CreditCard card = iMatDataHandler.getCreditCard();
+        cardnumberPayment.setText(card.getCardNumber());
+        cardOwnerPayment.setText(card.getHoldersName());
+        if(card.getValidMonth() != 0 && card.getValidYear() != 0) {
+            String month = String.format("%02d", card.getValidMonth());
+            String year = String.format("%02d", card.getValidYear());
+            cardExpiryDatePayment.setText(card.getValidMonth() + "/" );
+        }
+        cardCVCPayment.setText(Integer.toString(card.getVerificationCode()));
+    }
+
+    @FXML private void paymentStepDone2() {
+        CreditCard card = iMatDataHandler.getCreditCard();
+        card.setCardNumber(cardnumberPayment.getText());
+        card.setHoldersName(cardOwnerPayment.getText());
+        String[] valid = cardExpiryDatePayment.getText().split("/");
+        if(valid.length == 2) {
+            card.setValidMonth(Integer.parseInt(valid[0]));
+            card.setValidYear(Integer.parseInt(valid[1]));
+        }
+        card.setVerificationCode(Integer.parseInt(cardCVCPayment.getText()));
+
+        preparePaymentStep3();
+        paymentStage3.toFront();
+    }
+
+    @FXML private void preparePaymentStep3() {
+        paymentItems = iMatDataHandler.getShoppingCart().getItems();
+        paymentItemIndex = 0;
+        populateCurrentPaymentItemPane();
+        confirmTotalPrice.setText(Double.toString(iMatDataHandler.getShoppingCart().getTotal()));
+    }
+
+    @FXML private void paymentStepDone3() {
+        iMatDataHandler.placeOrder();
+        paymentStage4.toFront();
+    }
+
+    @FXML
+    private void populateCurrentPaymentItemPane() {
+        ObservableList<Node> children = confirmItemList.getChildren();
+        children.clear();
+        List<ShoppingItem> currentPageItems = paymentItems.subList(paymentItemIndex, Math.min(paymentItemIndex + paymentItemsPerPage, paymentItems.size()));
+        for(ShoppingItem i : currentPageItems) {
+            children.add(new HistoryItem(this, i));
+        }
+    }
+
+    @FXML private void firstPaymentItemPage() {
+        paymentItemIndex = 0;
+        populateCurrentPaymentItemPane();
+    }
+
+    @FXML private void previousPaymentItemPage() {
+        if(paymentItemIndex - paymentItemsPerPage < 0) {
+            paymentItemIndex = 0;
+        }
+        else {
+            paymentItemIndex -= paymentItemsPerPage;
+        }
+
+        populateCurrentPaymentItemPane();
+    }
+
+
+    @FXML private void nextPaymentItemPage() {
+        if(paymentItems.size() <= paymentItemIndex + paymentItemsPerPage)
+            return;
+
+        paymentItemIndex += paymentItemsPerPage;
+        populateCurrentPaymentItemPane();
     }
 }
