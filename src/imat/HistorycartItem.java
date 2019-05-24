@@ -12,6 +12,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import static imat.MainController.round;
+
 public class HistorycartItem extends AnchorPane {
     @FXML private Text dateHistoryCart;
     @FXML private Text totalPriceHistoryCart;
@@ -42,6 +44,8 @@ public class HistorycartItem extends AnchorPane {
         for(ShoppingItem item : items) {
             totalCost += item.getTotal();
         }
+
+        totalCost = round(totalCost, 2);
 
         totalPriceHistoryCart.textProperty().set(totalCost + "kr");
     }

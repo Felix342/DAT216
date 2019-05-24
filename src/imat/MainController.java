@@ -17,6 +17,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -111,10 +113,12 @@ public class MainController implements Initializable {
             public void shoppingCartChanged(CartEvent cartEvent) {
                 populateCurrentShopPage();
                 renderCart();
-                shoppingcartTotalPrice.textProperty().set(iMatDataHandler.getShoppingCart().getTotal() + "kr");
+                double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
+                shoppingcartTotalPrice.textProperty().set(totalPrice + "kr");
             }
         });
-        shoppingcartTotalPrice.textProperty().set(iMatDataHandler.getShoppingCart().getTotal() + "kr");
+        double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
+        shoppingcartTotalPrice.textProperty().set(totalPrice + "kr");
         renderCart();
         populateCategories();
         preparePaymentStep1();
@@ -377,7 +381,8 @@ public class MainController implements Initializable {
         paymentItems = iMatDataHandler.getShoppingCart().getItems();
         paymentItemIndex = 0;
         populateCurrentPaymentItemPane();
-        confirmTotalPrice.setText(Double.toString(iMatDataHandler.getShoppingCart().getTotal()));
+        double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
+        confirmTotalPrice.setText(Double.toString(totalPrice));
     }
 
     @FXML private void paymentStepDone3() {
@@ -419,4 +424,14 @@ public class MainController implements Initializable {
         paymentItemIndex += paymentItemsPerPage;
         populateCurrentPaymentItemPane();
     }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 }
+
+
