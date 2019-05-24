@@ -16,8 +16,13 @@ public class HistorycartItem extends AnchorPane {
     @FXML private Text dateHistoryCart;
     @FXML private Text totalPriceHistoryCart;
 
+    private MainController controller;
+    private Order order;
 
-    public HistorycartItem(Order order) {
+
+    public HistorycartItem(MainController c, Order o) {
+        controller = c;
+        order = o;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historycart_item.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -39,5 +44,10 @@ public class HistorycartItem extends AnchorPane {
         }
 
         totalPriceHistoryCart.textProperty().set(totalCost + "kr");
+    }
+
+    @FXML
+    public void openCart() {
+        controller.showOrdersCart(order);
     }
 }

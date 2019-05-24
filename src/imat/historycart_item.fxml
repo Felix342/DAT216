@@ -18,7 +18,7 @@
                   <Image url="@resources/cart.png" />
                </image>
             </ImageView>
-            <Pane fx:id="openHistoryCart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="196.0" styleClass="historycart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="148.0">
+            <Pane fx:id="openHistoryCart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openCart" prefHeight="50.0" prefWidth="196.0" styleClass="historycart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="148.0">
                <children>
                   <Text fill="WHITE" layoutX="50.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Öppna Korg">
                      <styleClass>

@@ -18,7 +18,6 @@ import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.*;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -28,6 +27,14 @@ public class MainController implements Initializable {
     private List<Product> products;
     private int productIndex = 0;
     private final int productsPerPage = 12;
+
+    private List<Order> orders;
+    private int orderIndex = 0;
+    private final int ordersPerPage = 10;
+
+    private List<ShoppingItem> historyItems;
+    private int itemIndex = 0;
+    private final int itemsPerPage = 10;
 
     @FXML private TextField searchBar;
 
@@ -52,6 +59,9 @@ public class MainController implements Initializable {
     @FXML private Text shoppingcartTotalPrice;
 
     @FXML private FlowPane historyOverall;
+    @FXML private AnchorPane historyCartView;
+    @FXML private AnchorPane historyItemView;
+    @FXML private FlowPane historyView;
 
     @FXML private ImageView testImage;
 
@@ -79,7 +89,6 @@ public class MainController implements Initializable {
         shoppingcartTotalPrice.textProperty().set(iMatDataHandler.getShoppingCart().getTotal() + "kr");
         renderCart();
         populateCategories();
-        populateHistory();
     }
 
     public IMatDataHandler getIMatDataHandler() {
@@ -117,7 +126,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void nextShopPage() {
-        if(productIndex + productsPerPage > products.size())
+        if(productIndex + productsPerPage >= products.size())
             return;
         productIndex += productsPerPage;
         populateCurrentShopPage();
@@ -147,7 +156,53 @@ public class MainController implements Initializable {
     private void showPaymentPane() { paymentPane.toFront(); }
 
     @FXML
-    private void showHistoryPane() { historyPane.toFront(); }
+    private void showHistoryTab() {
+        orders = iMatDataHandler.getOrders();
+        orderIndex = 0;
+        showHistoryPane();
+    }
+
+    @FXML
+    private void showHistoryPane() {
+        historyPane.toFront();
+        historyCartView.toFront();
+        populateCurrentHistoryCartPane();
+    }
+
+    @FXML
+    private void populateCurrentHistoryCartPane() {
+        ObservableList<Node> children = historyOverall.getChildren();
+        children.clear();
+        List<Order> currentPageOrders = orders.subList(orderIndex, Math.min(orderIndex + ordersPerPage, orders.size()));
+        for(Order o : currentPageOrders) {
+            children.add(new HistorycartItem(this, o));
+        }
+    }
+
+    @FXML private void firstCartPage() {
+        orderIndex = 0;
+        populateCurrentHistoryCartPane();
+    }
+
+    @FXML private void previousCartPage() {
+        if(orderIndex - ordersPerPage < 0) {
+            orderIndex = 0;
+        }
+        else {
+            orderIndex -= ordersPerPage;
+        }
+
+        populateCurrentHistoryCartPane();
+    }
+
+
+    @FXML private void nextCartPage() {
+        if(orders.size() <= orderIndex + ordersPerPage)
+            return;
+
+        orderIndex += ordersPerPage;
+        populateCurrentHistoryCartPane();
+    }
 
     @FXML
     private void showStartPane() { startPane.toFront(); }
@@ -182,7 +237,8 @@ public class MainController implements Initializable {
         }
     }
 
-    @FXML private void emptyShoppingCart() {
+    @FXML
+    private void emptyShoppingCart() {
         iMatDataHandler.getShoppingCart().clear();
     }
 
@@ -192,14 +248,49 @@ public class MainController implements Initializable {
         }
     }
 
-    private void populateHistory() {
-        for(Order order : iMatDataHandler.getOrders()) {
-            HistorycartItem hci = new HistorycartItem(order);
-            historyOverall.getChildren().add(hci);
+    @FXML
+    private void orderCart() {
+        iMatDataHandler.placeOrder(false);
+    }
+
+    public void showOrdersCart(Order order) {
+        historyItemView.toFront();
+        historyItems = order.getItems();
+        populateCurrentHistoryItemPane();
+    }
+
+    @FXML
+    private void populateCurrentHistoryItemPane() {
+        ObservableList<Node> children = historyView.getChildren();
+        children.clear();
+        List<ShoppingItem> currentPageItems = historyItems.subList(itemIndex, Math.min(itemIndex + itemsPerPage, historyItems.size()));
+        for(ShoppingItem i : currentPageItems) {
+            children.add(new HistoryItem(this, i));
         }
     }
 
-    @FXML private void orderCart() {
-        iMatDataHandler.placeOrder(false);
+    @FXML private void firstItemPage() {
+        itemIndex = 0;
+        populateCurrentHistoryItemPane();
+    }
+
+    @FXML private void previousItemPage() {
+        if(itemIndex - itemsPerPage < 0) {
+            itemIndex = 0;
+        }
+        else {
+            itemIndex -= itemsPerPage;
+        }
+
+        populateCurrentHistoryItemPane();
+    }
+
+
+    @FXML private void nextItemPage() {
+        if(historyItems.size() <= itemIndex + itemsPerPage)
+            return;
+
+        itemIndex += itemsPerPage;
+        populateCurrentHistoryItemPane();
     }
 }
