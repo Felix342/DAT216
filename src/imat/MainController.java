@@ -61,6 +61,7 @@ public class MainController implements Initializable {
     @FXML private TextField lastnameEdit;
     @FXML private TextField addressEdit;
     @FXML private TextField emailEdit;
+    @FXML private Text confirmationUserText;
 
     // Shopping pane
     @FXML private FlowPane categoryList;
@@ -183,7 +184,10 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void showUserPane() { userPane.toFront(); }
+    private void showUserPane() {
+        confirmationUserText.visibleProperty().set(false);
+        userPane.toFront();
+    }
 
     @FXML
     private void showHistoryTab() {
@@ -243,10 +247,22 @@ public class MainController implements Initializable {
     }
 
     private void populateUserFields(Customer customer) {
-        firstnameEdit.setText(customer.getFirstName());
-        lastnameEdit.setText(customer.getLastName());
-        addressEdit.setText(customer.getAddress());
-        emailEdit.setText(customer.getEmail());
+        String firstName = customer.getFirstName();
+        if(firstName != "") {
+            firstnameEdit.setText(firstName);
+        }
+        String lastName = customer.getLastName();
+        if(lastName != "") {
+            lastnameEdit.setText(lastName);
+        }
+        String adress = customer.getAddress();
+        if(adress != "") {
+            addressEdit.setText(adress);
+        }
+        String email = customer.getEmail();
+        if(email != "") {
+            emailEdit.setText(email);
+        }
     }
 
     @FXML
@@ -256,6 +272,7 @@ public class MainController implements Initializable {
         customer.setLastName(lastnameEdit.getText());
         customer.setAddress(addressEdit.getText());
         customer.setEmail(emailEdit.getText());
+        confirmationUserText.visibleProperty().set(true);
     }
 
     private void renderCart() {

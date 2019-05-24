@@ -68,39 +68,6 @@
       </AnchorPane>
       <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <AnchorPane fx:id="userPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background">
-               <children>
-                  <Pane layoutX="465.0" layoutY="161.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="200.0">
-                     <children>
-                        <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Förnamn:" />
-                        <TextField fx:id="firstnameEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
-                     </children>
-                  </Pane>
-                  <Pane layoutX="475.0" layoutY="171.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="250.0">
-                     <children>
-                        <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Efternamn:" />
-                        <TextField fx:id="lastnameEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
-                     </children>
-                  </Pane>
-                  <Pane layoutX="475.0" layoutY="171.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="300.0">
-                     <children>
-                        <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Adress:" />
-                        <TextField fx:id="addressEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
-                     </children>
-                  </Pane>
-                  <Pane layoutX="475.0" layoutY="171.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="350.0">
-                     <children>
-                        <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="E-post:" />
-                        <TextField fx:id="emailEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="saveEdit" layoutX="540.0" layoutY="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#saveUserFields" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="540.0" AnchorPane.topAnchor="400.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="27.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Spara ändringar" />
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
             <StackPane fx:id="historyPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background">
                <children>
                   <AnchorPane fx:id="historyCartView" prefHeight="200.0" prefWidth="200.0" styleClass="background">
@@ -524,6 +491,44 @@
                         <Text fill="WHITE" layoutX="35.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Tidigare Köp" />
                      </children>
                   </Pane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="userPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1280.0" styleClass="background">
+               <children>
+                  <Pane layoutX="465.0" layoutY="161.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="200.0">
+                     <children>
+                        <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Förnamn:" />
+                        <TextField fx:id="firstnameEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Förnamn" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="475.0" layoutY="171.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="250.0">
+                     <children>
+                        <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Efternamn:" />
+                        <TextField fx:id="lastnameEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Efternamnsson" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="475.0" layoutY="171.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="300.0">
+                     <children>
+                        <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Adress:" />
+                        <TextField fx:id="addressEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="mingata 123" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="475.0" layoutY="171.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="350.0">
+                     <children>
+                        <Text fill="WHITE" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="E-post:" />
+                        <TextField fx:id="emailEdit" layoutX="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="jag@email.se" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="saveEdit" layoutX="540.0" layoutY="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#saveUserFields" prefHeight="50.0" prefWidth="200.0" styleClass="confirm-item" AnchorPane.leftAnchor="540.0" AnchorPane.topAnchor="400.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="27.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="Spara ändringar" />
+                     </children>
+                  </Pane>
+                  <Text fx:id="confirmationUserText" fill="#3dcd3d" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ändringar sparades." textAlignment="CENTER" wrappingWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </children>
