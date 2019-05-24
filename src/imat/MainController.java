@@ -68,6 +68,7 @@ public class MainController implements Initializable {
     @FXML private FlowPane shoppingcartList;
     @FXML private Text shoppingcartTotalItems;
     @FXML private Text shoppingcartTotalPrice;
+    @FXML private Text resultKeyword;
 
     // History
     @FXML private FlowPane historyOverall;
@@ -116,6 +117,16 @@ public class MainController implements Initializable {
                 renderCart();
                 double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
                 shoppingcartTotalPrice.textProperty().set(totalPrice + "kr");
+                int numberOfItems = 0;
+                for(ShoppingItem item : iMatDataHandler.getShoppingCart().getItems()) {
+                    if(item.getProduct().getUnitSuffix().equals("kg")) {
+                        numberOfItems++;
+                    }
+                    else {
+                        numberOfItems += item.getAmount();
+                    }
+                    shoppingcartTotalItems.textProperty().set(Integer.toString(numberOfItems));
+                }
             }
         });
         double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
@@ -134,7 +145,9 @@ public class MainController implements Initializable {
         shopPane.toFront();
 
         productList.getChildren().clear();
-        products = iMatDataHandler.findProducts(searchBar.getText());
+        String searchString = searchBar.getText();
+        products = iMatDataHandler.findProducts(searchString);
+        resultKeyword.textProperty().set(searchString);
         productIndex = 0;
         populateCurrentShopPage();
     }
