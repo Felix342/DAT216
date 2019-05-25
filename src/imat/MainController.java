@@ -401,7 +401,6 @@ public class MainController implements Initializable {
             String year = String.format("%02d", card.getValidYear());
             cardExpiryDatePayment.setText(card.getValidMonth() + "/" );
         }
-        cardCVCPayment.setText(Integer.toString(card.getVerificationCode()));
     }
 
     @FXML private void paymentStepDone2() {
@@ -413,7 +412,6 @@ public class MainController implements Initializable {
             card.setValidMonth(Integer.parseInt(valid[0]));
             card.setValidYear(Integer.parseInt(valid[1]));
         }
-        card.setVerificationCode(Integer.parseInt(cardCVCPayment.getText()));
 
         preparePaymentStep3();
         paymentStage3.toFront();
