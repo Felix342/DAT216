@@ -1,11 +1,14 @@
 package imat;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -71,6 +74,7 @@ public class MainController implements Initializable {
     @FXML private Text shoppingcartTotalItems;
     @FXML private Text shoppingcartTotalPrice;
     @FXML private Text resultKeyword;
+    @FXML private ComboBox sortChoice;
 
     // History
     @FXML private FlowPane historyOverall;
@@ -146,6 +150,14 @@ public class MainController implements Initializable {
         renderCart();
         populateCategories();
         preparePaymentStep1();
+        sortChoice.getItems().addAll("Namn", "Billigast", "Dyrast");
+        sortChoice.valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1) {
+                sortProducts();
+                populateCurrentShopPage();
+            }
+        });
     }
 
     public IMatDataHandler getIMatDataHandler() {
@@ -161,6 +173,8 @@ public class MainController implements Initializable {
         products = iMatDataHandler.findProducts(searchString);
         resultKeyword.textProperty().set(searchString);
         productIndex = 0;
+
+        sortProducts();
         populateCurrentShopPage();
     }
 
@@ -173,7 +187,29 @@ public class MainController implements Initializable {
         String category = pc.name().toLowerCase().replace('_', ' ');
         resultKeyword.textProperty().set(category);
         productIndex = 0;
+        sortProducts();
         populateCurrentShopPage();
+    }
+
+    private void sortProducts() {
+        if(sortChoice.getValue() != null && !sortChoice.getValue().toString().isEmpty()) {
+            Comparator c = null;
+            switch(sortChoice.getValue().toString()) {
+                case "Namn":
+                    c = Comparator.comparing(Product::getName);
+                    break;
+                case "Billigast":
+                    c = Comparator.comparingDouble(Product::getPrice);
+                    break;
+                case "Dyrast":
+                    c = Comparator.comparingDouble(Product::getPrice).reversed();
+                    break;
+            }
+            if(c != null) {
+                products.sort(c);
+            }
+
+        }
     }
 
     private void populateCurrentShopPage() {
