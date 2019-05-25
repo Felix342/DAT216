@@ -81,7 +81,11 @@ public class ProductItem extends AnchorPane {
             return;
         }
         else {
-            item.setAmount(item.getAmount() - 1);
+            double newAmount = item.getAmount() - 1;
+            if(newAmount <= 0)
+                iMatDataHandler.getShoppingCart().removeItem(this.shoppingItem);
+            else
+                item.setAmount(item.getAmount() - 1);
             iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, false);
         }
 

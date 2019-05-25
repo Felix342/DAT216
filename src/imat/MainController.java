@@ -125,8 +125,8 @@ public class MainController implements Initializable {
                     else {
                         numberOfItems += item.getAmount();
                     }
-                    shoppingcartTotalItems.textProperty().set(Integer.toString(numberOfItems));
                 }
+                shoppingcartTotalItems.textProperty().set(Integer.toString(numberOfItems));
             }
         });
         double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
@@ -408,9 +408,6 @@ public class MainController implements Initializable {
     }
 
     @FXML private void preparePaymentStep3() {
-        paymentItems = iMatDataHandler.getShoppingCart().getItems();
-        paymentItemIndex = 0;
-        populateCurrentPaymentItemPane();
         double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
         confirmTotalPrice.setText(Double.toString(totalPrice));
     }
@@ -418,41 +415,6 @@ public class MainController implements Initializable {
     @FXML private void paymentStepDone3() {
         iMatDataHandler.placeOrder();
         paymentStage4.toFront();
-    }
-
-    @FXML
-    private void populateCurrentPaymentItemPane() {
-        ObservableList<Node> children = confirmItemList.getChildren();
-        children.clear();
-        List<ShoppingItem> currentPageItems = paymentItems.subList(paymentItemIndex, Math.min(paymentItemIndex + paymentItemsPerPage, paymentItems.size()));
-        for(ShoppingItem i : currentPageItems) {
-            children.add(new HistoryItem(this, i));
-        }
-    }
-
-    @FXML private void firstPaymentItemPage() {
-        paymentItemIndex = 0;
-        populateCurrentPaymentItemPane();
-    }
-
-    @FXML private void previousPaymentItemPage() {
-        if(paymentItemIndex - paymentItemsPerPage < 0) {
-            paymentItemIndex = 0;
-        }
-        else {
-            paymentItemIndex -= paymentItemsPerPage;
-        }
-
-        populateCurrentPaymentItemPane();
-    }
-
-
-    @FXML private void nextPaymentItemPage() {
-        if(paymentItems.size() <= paymentItemIndex + paymentItemsPerPage)
-            return;
-
-        paymentItemIndex += paymentItemsPerPage;
-        populateCurrentPaymentItemPane();
     }
 
     public static double round(double value, int places) {

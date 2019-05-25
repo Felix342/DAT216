@@ -63,11 +63,20 @@ public class ShoppingcartItem extends AnchorPane {
             return;
         }
         else {
-            item.setAmount(item.getAmount() - 1);
+            double newAmount = item.getAmount() - 1;
+            if(newAmount <= 0)
+                removeItem();
+            else
+                item.setAmount(item.getAmount() - 1);
             iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, false);
         }
 
         amountShoppingcartItem.textProperty().set(Integer.toString((int)getAmount()));
+    }
+
+    @FXML
+    private void removeItem() {
+        iMatDataHandler.getShoppingCart().removeItem(getItem(this.product));
     }
 
     private ShoppingItem getItem(Product p) {
