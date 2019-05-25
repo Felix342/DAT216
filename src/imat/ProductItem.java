@@ -116,4 +116,20 @@ public class ProductItem extends AnchorPane {
             return si.getAmount();
         }
     }
+
+    @FXML
+    public void toggleFavorite() {
+        String imagePath;
+        if(iMatDataHandler.isFavorite(product)) {
+            iMatDataHandler.removeFavorite(product);
+            imagePath = "resources/notfavorite.png";
+        }
+        else {
+            iMatDataHandler.addFavorite(product);
+            imagePath = "resources/favorite.png";
+        }
+
+        Image starImage = new Image(getClass().getResource(imagePath).toString(), true);
+        productFavorite.imageProperty().set(starImage);
+    }
 }
