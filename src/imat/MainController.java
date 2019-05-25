@@ -7,10 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,10 +20,9 @@ import se.chalmers.cse.dat216.project.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class MainController implements Initializable {
 
@@ -92,6 +88,8 @@ public class MainController implements Initializable {
     @FXML private TextField lastnamePayment;
     @FXML private TextField addressPayment;
     @FXML private TextField emailPayment;
+    @FXML private DatePicker datePicker;
+    @FXML private ComboBox deliveryTime;
 
     @FXML private TextField cardnumberPayment;
     @FXML private TextField cardOwnerPayment;
@@ -100,6 +98,9 @@ public class MainController implements Initializable {
 
     @FXML private FlowPane confirmItemList;
     @FXML private Text confirmTotalPrice;
+    @FXML private Text paymentDeliveryFinal;
+    @FXML private Text paymentTotalAmount;
+    @FXML private Text paymentTotalCost;
 
     @FXML private ImageView testImage;
 
@@ -158,10 +159,28 @@ public class MainController implements Initializable {
                 populateCurrentShopPage();
             }
         });
+        for(int i = 8; i <= 20; i += 2) {
+            deliveryTime.getItems().add(i + ":00 - " + (i + 2) + ":00");
+        }
     }
 
     public IMatDataHandler getIMatDataHandler() {
         return iMatDataHandler;
+    }
+
+    @FXML
+    private void shopPaneToFront() {
+        shopPane.toFront();
+    }
+
+    @FXML
+    private void stage1ToFront() {
+        paymentStage1.toFront();
+    }
+
+    @FXML
+    private void stage2ToFront() {
+        paymentStage2.toFront();
     }
 
     @FXML
@@ -460,8 +479,24 @@ public class MainController implements Initializable {
     }
 
     @FXML private void preparePaymentStep3() {
+        DateFormat weekDayFormat = new SimpleDateFormat("EEEE", new Locale("sv", "SE"));
+        String day = weekDayFormat.format(java.sql.Date.valueOf(datePicker.getValue()));
+        String time = deliveryTime.getValue().toString();
+        paymentDeliveryFinal.textProperty().set(day + " " + time);
+
+        int numberOfItems = 0;
+        for(ShoppingItem item : iMatDataHandler.getShoppingCart().getItems()) {
+            if(item.getProduct().getUnitSuffix().equals("kg")) {
+                numberOfItems++;
+            }
+            else {
+                numberOfItems += item.getAmount();
+            }
+        }
+        paymentTotalAmount.textProperty().set(Integer.toString(numberOfItems));
+
         double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
-        confirmTotalPrice.setText(Double.toString(totalPrice));
+        paymentTotalCost.setText(totalPrice + "kr");
     }
 
     @FXML private void paymentStepDone3() {
