@@ -20,6 +20,7 @@ import se.chalmers.cse.dat216.project.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -131,6 +132,16 @@ public class MainController implements Initializable {
         });
         double totalPrice = round(iMatDataHandler.getShoppingCart().getTotal(), 2);
         shoppingcartTotalPrice.textProperty().set(totalPrice + "kr");
+        int numberOfItems = 0;
+        for(ShoppingItem item : iMatDataHandler.getShoppingCart().getItems()) {
+            if(item.getProduct().getUnitSuffix().equals("kg")) {
+                numberOfItems++;
+            }
+            else {
+                numberOfItems += item.getAmount();
+            }
+        }
+        shoppingcartTotalItems.textProperty().set(Integer.toString(numberOfItems));
         renderCart();
         populateCategories();
         preparePaymentStep1();
@@ -291,8 +302,9 @@ public class MainController implements Initializable {
     private void renderCart() {
         shoppingcartList.getChildren().clear();
         ShoppingCart cart = iMatDataHandler.getShoppingCart();
-        for(ShoppingItem item : cart.getItems()) {
-            ShoppingcartItem sci = new ShoppingcartItem(this, item);
+        List<ShoppingItem> items = cart.getItems();
+        for(int i = items.size() - 1; i >= 0; i--) {
+            ShoppingcartItem sci = new ShoppingcartItem(this, items.get(i));
             shoppingcartList.getChildren().add(sci);
         }
     }
