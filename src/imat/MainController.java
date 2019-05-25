@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -165,10 +166,12 @@ public class MainController implements Initializable {
 
     @FXML
     protected void showShopPaneByCategory(ProductCategory pc) {
-        shopPane.toFront();
+        searchBar.setText("");
 
         productList.getChildren().clear();
         products = iMatDataHandler.getProducts(pc);
+        String category = pc.name().toLowerCase().replace('_', ' ');
+        resultKeyword.textProperty().set(category);
         productIndex = 0;
         populateCurrentShopPage();
     }
@@ -231,6 +234,9 @@ public class MainController implements Initializable {
     private void populateCurrentHistoryCartPane() {
         ObservableList<Node> children = historyOverall.getChildren();
         children.clear();
+
+        Collections.sort(orders, (o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+
         List<Order> currentPageOrders = orders.subList(orderIndex, Math.min(orderIndex + ordersPerPage, orders.size()));
         for(Order o : currentPageOrders) {
             children.add(new HistorycartItem(this, o));
