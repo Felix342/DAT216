@@ -210,6 +210,28 @@ public class MainController implements Initializable {
         populateCurrentShopPage();
     }
 
+    public void showShopPaneAll() {
+        searchBar.setText("");
+
+        productList.getChildren().clear();
+        products = iMatDataHandler.getProducts();
+        resultKeyword.textProperty().set("Alla");
+        productIndex = 0;
+        sortProducts();
+        populateCurrentShopPage();
+    }
+
+    public void showShopPaneFavorite() {
+        searchBar.setText("");
+
+        productList.getChildren().clear();
+        products = iMatDataHandler.favorites();
+        resultKeyword.textProperty().set("Favoriter");
+        productIndex = 0;
+        sortProducts();
+        populateCurrentShopPage();
+    }
+
     private void sortProducts() {
         if(sortChoice.getValue() != null && !sortChoice.getValue().toString().isEmpty()) {
             Comparator c = null;
@@ -376,6 +398,8 @@ public class MainController implements Initializable {
     }
 
     private void populateCategories() {
+        categoryList.getChildren().add(new CategoryItemAll(this));
+        categoryList.getChildren().add(new CategoryItemFavorite(this));
         for(ProductCategory pc : ProductCategory.values()) {
             categoryList.getChildren().add(new CategoryItem(this, pc));
         }
