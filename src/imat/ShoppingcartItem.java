@@ -18,6 +18,8 @@ public class ShoppingcartItem extends AnchorPane {
     @FXML private Text priceShoppingCartItem;
     @FXML private Text amountShoppingcartItem;
 
+    private final double increaseAmountKg = 0.1;
+
     private IMatDataHandler iMatDataHandler;
     private Product product;
     private ShoppingItem shoppingItem;
@@ -38,17 +40,33 @@ public class ShoppingcartItem extends AnchorPane {
 
         nameShoppingcartItem.textProperty().set(product.getName());
         priceShoppingCartItem.textProperty().set(Double.toString(product.getPrice()) + "kr");
-        amountShoppingcartItem.textProperty().set(Integer.toString((int)item.getAmount()));
+        String amountText;
+        if(product.getUnitSuffix().equals("kg")) {
+            amountText = MainController.round(getAmount(), 1) + "kg";
+        }
+        else {
+            amountText = (int)getAmount() + "st";
+        }
+        amountShoppingcartItem.textProperty().set(amountText);
     }
 
     @FXML
     protected void addOneItem(Event event) {
         ShoppingItem item = getItem(this.product);
+        boolean isWeight = this.product.getUnitSuffix().equals("kg");
         if(item == null) {
             iMatDataHandler.getShoppingCart().addProduct(this.product);
+            if(isWeight) {
+                getItem(this.product).setAmount(increaseAmountKg);
+            }
         }
         else {
-            item.setAmount(item.getAmount() + 1);
+            if(isWeight) {
+                item.setAmount(item.getAmount() + increaseAmountKg);
+            }
+            else {
+                item.setAmount(item.getAmount() + 1);
+            }
         }
 
         iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, true);
@@ -59,15 +77,21 @@ public class ShoppingcartItem extends AnchorPane {
     @FXML
     protected void removeOneItem() {
         ShoppingItem item = getItem(this.product);
+        boolean isWeight = this.product.getUnitSuffix().equals("kg");
         if(item == null || item.getAmount() < 1) {
             return;
         }
         else {
-            double newAmount = item.getAmount() - 1;
+            double newAmount = item.getAmount();
+            if(isWeight)
+                newAmount -= increaseAmountKg;
+            else
+                newAmount -= 1;
+
             if(newAmount <= 0)
                 removeItem();
             else
-                item.setAmount(item.getAmount() - 1);
+                item.setAmount(newAmount);
             iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, false);
         }
 

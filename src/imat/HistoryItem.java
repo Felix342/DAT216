@@ -32,7 +32,10 @@ public class HistoryItem extends AnchorPane {
         iMatDataHandler = c.getIMatDataHandler();
         Product product = item.getProduct();
         nameHistoryItem.textProperty().set(product.getName());
-        amountHistoryItem.textProperty().set(Double.toString(item.getAmount()));
+        String suffix = "st";
+        if (product.getUnitSuffix().equals("kg"))
+            suffix = "kg";
+        amountHistoryItem.textProperty().set(Double.toString(MainController.round(item.getAmount(), 1)) + suffix);
         priceHistoryItem.textProperty().set(product.getPrice() + "kr");
         imageHistoryItem.imageProperty().setValue(iMatDataHandler.getFXImage(product));
     }

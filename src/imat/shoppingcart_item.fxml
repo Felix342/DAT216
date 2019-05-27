@@ -12,13 +12,13 @@
          <children>
             <Text fx:id="nameShoppingcartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="Paprika" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <Text fx:id="priceShoppingCartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-larger" text="50kr" textAlignment="CENTER" wrappingWidth="265.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
-            <Text fx:id="amountShoppingcartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="3" textAlignment="CENTER" wrappingWidth="269.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="38.0" />
+            <Text fx:id="amountShoppingcartItem" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-big" text="0.1kg" textAlignment="CENTER" wrappingWidth="269.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="38.0" />
             <ImageView fx:id="deleteShoppingcartItem" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#removeItem" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@resources/close.png" />
                </image>
             </ImageView>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="40.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="40.0">
                <children>
                   <ImageView fx:id="addShoppingcartItem" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#addOneItem" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -27,7 +27,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="40.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="24.0" styleClass="catitem" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="40.0">
                <children>
                   <ImageView fx:id="removeShoppingcartItem" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#removeOneItem" pickOnBounds="true" preserveRatio="true">
                      <image>

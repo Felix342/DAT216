@@ -24,6 +24,7 @@ public class ProductItem extends AnchorPane {
     @FXML private Text productPrice;
     @FXML private Text productAmount;
 
+    private final double increaseAmountKg = 0.1;
 
     private MainController parentController;
     private IMatDataHandler iMatDataHandler;
@@ -56,40 +57,62 @@ public class ProductItem extends AnchorPane {
         String priceAndUnit = Double.toString(product.getPrice()) + product.getUnit();
         productPrice.textProperty().set(priceAndUnit);
 
-        productAmount.textProperty().set(Integer.toString((int)getAmount()));
+        String amount;
+        if(product.getUnitSuffix().equals("kg")) {
+            amount = controller.round(getAmount(), 1) + "kg";
+        }
+        else {
+            amount = (int)getAmount() + "st";
+        }
+        productAmount.textProperty().set(amount);
     }
 
     @FXML
     protected void addOneItem(Event event) {
         ShoppingItem item = getItem(this.product);
+        boolean isWeight = this.product.getUnitSuffix().equals("kg");
         if(item == null) {
             iMatDataHandler.getShoppingCart().addProduct(this.product);
+            if(isWeight) {
+                getItem(this.product).setAmount(increaseAmountKg);
+            }
         }
         else {
-            item.setAmount(item.getAmount() + 1);
+            if(isWeight) {
+                item.setAmount(item.getAmount() + increaseAmountKg);
+            }
+            else {
+                item.setAmount(item.getAmount() + 1);
+            }
         }
 
         iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, true);
 
-        productAmount.textProperty().set(Integer.toString((int)getAmount()));
+//        productAmount.textProperty().set(Integer.toString((int)getAmount()));
     }
 
     @FXML
     protected void removeOneItem() {
         ShoppingItem item = getItem(this.product);
-        if(item == null || item.getAmount() < 1) {
+        boolean isWeight = this.product.getUnitSuffix().equals("kg");
+        if(item == null || item.getAmount() <= 0) {
             return;
         }
         else {
-            double newAmount = item.getAmount() - 1;
+            double newAmount = item.getAmount();
+            if(isWeight)
+                newAmount -= increaseAmountKg;
+            else
+                newAmount -= 1;
+
             if(newAmount <= 0)
                 iMatDataHandler.getShoppingCart().removeItem(this.shoppingItem);
             else
-                item.setAmount(item.getAmount() - 1);
+                item.setAmount(newAmount);
             iMatDataHandler.getShoppingCart().fireShoppingCartChanged(item, false);
         }
 
-        productAmount.textProperty().set(Integer.toString((int)getAmount()));
+//        productAmount.textProperty().set(Integer.toString((int)getAmount()));
     }
 
     private ShoppingItem getItem(Product p) {
