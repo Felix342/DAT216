@@ -113,6 +113,7 @@ public class MainController implements Initializable {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if(keyEvent.getCode().equals(KeyCode.ENTER)) {
+                    SelectedCategoryItem.clearSelected();
                     showShopPane();
                 }
             }
@@ -400,14 +401,11 @@ public class MainController implements Initializable {
     private void populateCategories() {
         categoryList.getChildren().add(new CategoryItemAll(this));
         categoryList.getChildren().add(new CategoryItemFavorite(this));
-        for(ProductCategory pc : ProductCategory.values()) {
+        ProductCategory[] productCategories = ProductCategory.values().clone();
+        Arrays.sort(productCategories, Comparator.comparing(Enum::name));
+        for(ProductCategory pc : productCategories) {
             categoryList.getChildren().add(new CategoryItem(this, pc));
         }
-    }
-
-    @FXML
-    private void orderCart() {
-        iMatDataHandler.placeOrder(false);
     }
 
     public void showOrdersCart(Order order) {

@@ -8,8 +8,9 @@ import se.chalmers.cse.dat216.project.ProductCategory;
 
 import java.io.IOException;
 
-public class CategoryItem extends AnchorPane {
+public class CategoryItem extends AnchorPane implements ICategoryItem {
 
+    @FXML private AnchorPane categoryLink;
     @FXML private Text categoryName;
 
     private MainController parentController;
@@ -31,7 +32,17 @@ public class CategoryItem extends AnchorPane {
     }
 
     @FXML
-    private void onClick() {
+    public void onClick() {
+        SelectedCategoryItem.setCategoryItem(this);
         parentController.showShopPaneByCategory(productCategory);
+    }
+
+    public void setStatus(boolean isSelected) {
+        if (isSelected) {
+            categoryLink.getStyleClass().add("catitem-selected");
+        }
+        else {
+            categoryLink.getStyleClass().remove("catitem-selected");
+        }
     }
 }

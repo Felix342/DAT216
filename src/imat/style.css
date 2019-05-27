@@ -38,6 +38,10 @@
     -fx-background-color: #1F3848;
 }
 
+.catitem-selected {
+    -fx-background-color: #405f73;
+}
+
 .pagebuttons {
     -fx-background-color: #3F5868;
 }
