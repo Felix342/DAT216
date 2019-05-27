@@ -42,6 +42,7 @@ public class MainController implements Initializable {
     private List<ShoppingItem> paymentItems;
     private int paymentItemIndex = 0;
     private final int paymentItemsPerPage = 3;
+    private Order currentHistoryOrder;
 
     // Navbar
     @FXML private TextField searchBar;
@@ -410,8 +411,18 @@ public class MainController implements Initializable {
 
     public void showOrdersCart(Order order) {
         historyItemView.toFront();
+        currentHistoryOrder = order;
         historyItems = order.getItems();
         populateCurrentHistoryItemPane();
+    }
+
+    @FXML
+    private void loadCurrentCart() {
+        iMatDataHandler.getShoppingCart().clear();
+        for(ShoppingItem item : historyItems) {
+            iMatDataHandler.getShoppingCart().addItem(item);
+        }
+        showShopPane();
     }
 
     @FXML
