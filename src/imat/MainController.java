@@ -512,6 +512,11 @@ public class MainController implements Initializable {
         paymentUserHint2.visibleProperty().set(false);
     }
 
+    @FXML private void invoicePayment() {
+        preparePaymentStep3();
+        paymentStage3.toFront();
+    }
+
     @FXML private void paymentStepDone2() {
         CreditCard card = iMatDataHandler.getCreditCard();
         String cardNumber = cardnumberPayment.getText();
