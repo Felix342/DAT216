@@ -540,7 +540,7 @@ public class MainController implements Initializable {
     }
 
     @FXML private void preparePaymentStep3() {
-        DateFormat weekDayFormat = new SimpleDateFormat("EEEE", new Locale("sv", "SE"));
+        DateFormat weekDayFormat = new SimpleDateFormat("EEEE d MMMM", new Locale("sv", "SE"));
         String day = weekDayFormat.format(java.sql.Date.valueOf(datePicker.getValue()));
         String time = deliveryTime.getValue().toString();
         paymentDeliveryFinal.textProperty().set(day + " " + time);
