@@ -22,6 +22,7 @@ import java.math.RoundingMode;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class MainController implements Initializable {
@@ -91,11 +92,13 @@ public class MainController implements Initializable {
     @FXML private TextField emailPayment;
     @FXML private DatePicker datePicker;
     @FXML private ComboBox deliveryTime;
+    @FXML private Text paymentUserHint1;
 
     @FXML private TextField cardnumberPayment;
     @FXML private TextField cardOwnerPayment;
     @FXML private TextField cardExpiryDatePayment;
     @FXML private TextField cardCVCPayment;
+    @FXML private Text paymentUserHint2;
 
     @FXML private FlowPane confirmItemList;
     @FXML private Text confirmTotalPrice;
@@ -473,17 +476,28 @@ public class MainController implements Initializable {
         lastnamePayment.setText(customer.getLastName());
         addressPayment.setText(customer.getAddress());
         emailPayment.setText(customer.getEmail());
+        paymentUserHint1.visibleProperty().set(false);
     }
 
     @FXML private void paymentStepDone1() {
         Customer customer = iMatDataHandler.getCustomer();
-        customer.setFirstName(firstnamePayment.getText());
-        customer.setLastName(lastnamePayment.getText());
-        customer.setAddress(addressPayment.getText());
-        customer.setEmail(emailPayment.getText());
-
-        preparePaymentStep2();
-        paymentStage2.toFront();
+        String firstName = firstnamePayment.getText();
+        String lastName = lastnamePayment.getText();
+        String adress = addressPayment.getText();
+        String email = emailPayment.getText();
+        LocalDate date = datePicker.valueProperty().get();
+        Object time = deliveryTime.getValue();
+        if(!firstName.equals("") && !lastName.equals("") && !adress.equals("") && !email.equals("") && date != null && time != null) {
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setAddress(adress);
+            customer.setEmail(email);
+            preparePaymentStep2();
+            paymentStage2.toFront();
+        }
+        else {
+            paymentUserHint1.visibleProperty().set(true);
+        }
     }
 
     private void preparePaymentStep2() {
@@ -493,22 +507,31 @@ public class MainController implements Initializable {
         if(card.getValidMonth() != 0 && card.getValidYear() != 0) {
             String month = String.format("%02d", card.getValidMonth());
             String year = String.format("%02d", card.getValidYear());
-            cardExpiryDatePayment.setText(card.getValidMonth() + "/" );
+            cardExpiryDatePayment.setText(card.getValidMonth() + "/" + card.getValidYear());
         }
+        paymentUserHint2.visibleProperty().set(false);
     }
 
     @FXML private void paymentStepDone2() {
         CreditCard card = iMatDataHandler.getCreditCard();
-        card.setCardNumber(cardnumberPayment.getText());
-        card.setHoldersName(cardOwnerPayment.getText());
-        String[] valid = cardExpiryDatePayment.getText().split("/");
-        if(valid.length == 2) {
-            card.setValidMonth(Integer.parseInt(valid[0]));
-            card.setValidYear(Integer.parseInt(valid[1]));
+        String cardNumber = cardnumberPayment.getText();
+        String ownerName = cardOwnerPayment.getText();
+        String cvcCode = cardCVCPayment.getText();
+        String expiryDate = cardExpiryDatePayment.getText();
+        if(!cardNumber.equals("") && !ownerName.equals("") && !cvcCode.equals("") && !expiryDate.equals("")) {
+            card.setCardNumber(cardNumber);
+            card.setHoldersName(ownerName);
+            String[] valid = expiryDate.split("/");
+            if(valid.length == 2) {
+                card.setValidMonth(Integer.parseInt(valid[0]));
+                card.setValidYear(Integer.parseInt(valid[1]));
+            }
+            preparePaymentStep3();
+            paymentStage3.toFront();
         }
-
-        preparePaymentStep3();
-        paymentStage3.toFront();
+        else {
+            paymentUserHint2.visibleProperty().set(true);
+        }
     }
 
     @FXML private void preparePaymentStep3() {
