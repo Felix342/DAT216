@@ -479,6 +479,8 @@ public class MainController implements Initializable {
         paymentUserHint1.visibleProperty().set(false);
     }
 
+    private boolean isInvoice = false;
+
     @FXML private void paymentStepDone1() {
         Customer customer = iMatDataHandler.getCustomer();
         String firstName = firstnamePayment.getText();
@@ -492,6 +494,7 @@ public class MainController implements Initializable {
             customer.setLastName(lastName);
             customer.setAddress(adress);
             customer.setEmail(email);
+            isInvoice = false;
             preparePaymentStep2();
             paymentStage2.toFront();
         }
@@ -513,8 +516,34 @@ public class MainController implements Initializable {
     }
 
     @FXML private void invoicePayment() {
-        preparePaymentStep3();
-        paymentStage3.toFront();
+        Customer customer = iMatDataHandler.getCustomer();
+        String firstName = firstnamePayment.getText();
+        String lastName = lastnamePayment.getText();
+        String adress = addressPayment.getText();
+        String email = emailPayment.getText();
+        LocalDate date = datePicker.valueProperty().get();
+        Object time = deliveryTime.getValue();
+        if(!firstName.equals("") && !lastName.equals("") && !adress.equals("") && !email.equals("") && date != null && time != null) {
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setAddress(adress);
+            customer.setEmail(email);
+            isInvoice = true;
+            preparePaymentStep3();
+            paymentStage3.toFront();
+        }
+        else {
+            paymentUserHint1.visibleProperty().set(true);
+        }
+    }
+
+    @FXML private void goBackFromStep3() {
+        if(isInvoice) {
+            stage1ToFront();
+        }
+        else {
+            stage2ToFront();
+        }
     }
 
     @FXML private void paymentStepDone2() {
